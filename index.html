@@ -1,140 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cash Zone</title>
-  <link rel="stylesheet" href="style.css">
-  <script src="https://kit.fontawesome.com/64d58efce2.js" crossorigin="anonymous"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+   
 </head>
 <body>
-  <div class="container">
-    <div class="forms-container">
-      <div class="signin-signup">
-        <form action="#" name="submit-to-google-sheet" class="sign-in-form">
-          <h2 class="title">CZ GRID EA</h2>
-          <p>Minimum deposit 1,000$</p>
-          <span>10% dan 30% gacha oylik daromad </span>
-          <div class="input-field">
-            <i class="fas fa-user"></i>
-            <input type="text" placeholder="Ism" name="name" id="name" autocomplete="off"/>
-          </div>
-          <div class="input-field">
-            <i class="fas fa-phone"></i>
-            <input type="tel" placeholder="Telefon raqam" name="phone" id="phone" autocomplete="off"/>
-          </div>
-          <div class="input-field">
-            <i class="fas fa-wallet"></i>
-            <input type="number" placeholder="Qancha investitsiya qilmoqchisiz" name="price" id="price" autocomplete="off"/>
-        </div>
-        
-        <style>
-            ::-webkit-input-placeholder {
-                font-size: 0.8em;
-            }
-            :-ms-input-placeholder {
-                font-size: 0.8em;
-            }
-            ::-ms-input-placeholder {
-                font-size: 0.8em;
-            }
-            ::placeholder {
-                font-size: 0.8em;
-            }
-        </style>
-        
-          <button id="submitButton" type="submit" disabled>Yuborish</button>
-        </form>
-      </div>
+
+<nav>
+    <img src="images/logo.png" alt="">
+</nav>
+<div class="center">
+    <h1>CZ GRID EA ROBOTI ORQALI 10%-30% GACHA PASSIV DAROMAD OLING</h1>
+    <img src="images/Tab.png" alt="">
+    <div class="about">
+        <span><img src="images/1_line.svg.png" alt="">Robot 100% Sliv qilib yubormaydi</span>
+        <span><img src="images/2_corner.svg.png" alt="">Stabil daromad</span>
+        <span><img src="images/3_update.svg.png" alt="">Boshqarishda yordam beramiz</span>
     </div>
-
-    <div class="panels-container">
-      <div class="panel left-panel">
-        <div class="content">
-          <img src="images/Png/003.png" alt="" class="image">
-        </div>
-      </div>
+    <div class="buttons">
+        <button class="btn button1" id="registerButton"><a href="contact.html"><img src="images/fire.svg.png" alt="">RO'YHATDAN O'TISH</a></button>
+        <button class="btn button2"><a href=""><img src="images/target.png" alt="">REZULTAT KO'RISH</a></button>
     </div>
-  </div>
+</div>
 
-  <script>
-    const scriptURL = 'https://script.google.com/macros/s/AKfycbwD3Pj5erSOdl9cjFR9BCkUIKQL10iuPfhWYKSHPSRatRyHs6SryNnO3vStJ_3puZ9Q/exec';
-    const form = document.forms['submit-to-google-sheet'];
-
-    form.addEventListener('submit', e => {
-      e.preventDefault();
-      fetch(scriptURL, { method: 'POST', body: new FormData(form)})
-        .then(response => {
-          console.log('Success!', response);
-          sendTelegram();
-        })
-        .catch(error => console.error('Error!', error.message));
-    });
-
-    window.oncontextmenu = function() {
-      return false;
-    };
-
-    // Replace with your actual Telegram bot token and chat ID
-    let telegram_bot_id = "7370398929:AAFaj5AgaCeuFxyfvTJct5Uwmr_Qv0R2-g0";
-    let chat_id = "6526885714";
-
-    function ready() {
-      let u_name = document.getElementById("name").value.trim();
-      let phone = document.getElementById("phone").value.trim();
-      let price = document.getElementById("price").value.trim();
-
-      let message = "\nName: " + u_name + "\nPhone number: " + phone + "\nDeposit amount: " + price;
-      return message;
-    }
-
-    function sendTelegram() {
-      let message = ready();
-
-      let settings = {
-        "async": true,
-        "crossDomain": true,
-        "url": "https://api.telegram.org/bot" + telegram_bot_id + "/sendMessage",
-        "method": "POST",
-        "headers": {
-          "Content-Type": "application/json",
-          "cache-control": "no-cache"
-        },
-        "data": JSON.stringify({
-          "chat_id": chat_id,
-          "text": message
-        })
-      };
-
-      $.ajax(settings).done(function(response) {
-        console.log('Telegram message sent:', response);
-        window.location.href = 'ok.html';
-      });
-
-      document.getElementById("name").value = "";
-      document.getElementById("phone").value = "";
-      document.getElementById("price").value = "";
-      document.getElementById("submitButton").setAttribute("disabled", "disabled");
-    }
-
-    function checkForm() {
-      let name = document.getElementById("name").value.trim();
-      let phone = document.getElementById("phone").value.trim();
-      let price = document.getElementById("price").value.trim();
-
-      if (name.length >= 3 && name.length <= 20 &&
-          phone !== "" && phone.length >= 9 && phone.length <= 13 &&
-          price !== "") {
-        document.getElementById("submitButton").removeAttribute("disabled");
-      } else {
-        document.getElementById("submitButton").setAttribute("disabled", "disabled");
-      }
-    }
-
-    document.getElementById("name").addEventListener("input", checkForm);
-    document.getElementById("phone").addEventListener("input", checkForm);
-    document.getElementById("price").addEventListener("input", checkForm);
-  </script>
 </body>
 </html>
